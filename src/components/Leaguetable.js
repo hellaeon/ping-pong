@@ -2,40 +2,9 @@ import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 
 class Leaguetable extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [
-        {
-          id: 1,
-          name: "Sani",
-          won: 0,
-          lost: 1,
-          winning: 0,
-          points: 0
-        },
-        {
-          id: 2,
-          name: "Elmar",
-          won: 1,
-          lost: 0,
-          winning: 100,
-          points: 2
-        },
-        {
-          id: 3,
-          name: "Sachin",
-          won: 1,
-          lost: 1,
-          winning: 50,
-          points: 2
-        }
-      ]
-    };
-  }
-
   render() {
-    const PersonRow = props => {
+    const players = this.props.players;
+    const PlayerRow = props => {
       return (
         <tr>
           <td>
@@ -51,10 +20,10 @@ class Leaguetable extends Component {
             {props.lost}
           </td>
           <td>
-            {props.winning}
+            {`${props.won/(props.won+props.lost)*100}%`}
           </td>
           <td>
-            {props.points}
+            {props.won*2}
           </td>
         </tr>
       );
@@ -74,16 +43,16 @@ class Leaguetable extends Component {
               <th>Points</th>
             </tr>
             </thead>
-            {this.state.data.map(person => {
-              return <PersonRow 
-                     key={person.id} 
-                     id={person.id} 
-                     name={person.name} 
-                     won={person.won}
-                     lost={person.lost}
-                     winning={person.winning}
-                     points={person.points}  />;
+            <tbody>
+            {players.map((player, i) => {
+              return <PlayerRow 
+                     key={i} 
+                     id={i} 
+                     name={player.name} 
+                     won={player.won}
+                     lost={player.lost}  />;
             })}
+            </tbody>
           </table>
           </div>
         </div>
