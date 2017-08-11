@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
+const playerStyle = {
+  "color": "white",
+  "background-color": "rgb(0,51,102)",
+  "border-top-left-radius": "6px",
+  "border-top-right-radius": "6px",
+  "border-bottom-left-radius": "6px",
+  "border-bottom-right-radius": "6px",
+  "margin-left": "-20px"
+};
+
 const textStyle = {
-  textAlign: "center",
-  display: "block"
+  "textAlign": "center",
+  "display": "block"
+};
+
+const colorStyle = {
+  "background-color": "rgba(255,255,255,0.1)",
+  "color": "white"
 };
 
 class NewPlayer extends Component {
@@ -28,7 +43,7 @@ class NewPlayer extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-xs-4">
+          <div className="col-xs-4" style={playerStyle}>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="player" style={textStyle}>
@@ -41,6 +56,7 @@ class NewPlayer extends Component {
                   placeholder="eg. Jimbo"
                   value={this.state.value}
                   onChange={this.handleChange}
+                  style={colorStyle}
                 />
               </div>
               <div className="form-group">

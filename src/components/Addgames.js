@@ -1,10 +1,24 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
+const gamesStyle = {
+  "color": "white",
+  "background-color": "rgb(0,51,102)",
+  "border-top-left-radius": "6px",
+  "border-top-right-radius": "6px",
+  "border-bottom-left-radius": "6px",
+  "border-bottom-right-radius": "6px"
+};
+
 const textStyle = {
-  textAlign: "center",
-  display: "block",
-  fontWeight: "bold"
+  "textAlign": "center",
+  "display": "block",
+  "fontWeight": "bold"
+};
+
+const colorStyle = {
+  "background-color": "rgba(255,255,255,0.1)",
+  "color": "white"
 };
 
 class Addgames extends Component {
@@ -47,7 +61,15 @@ class Addgames extends Component {
       sets: this.state.sets
     };
     this.props.addGame(game);
-    this.setState({player1name: "", player2name: "", player1score: 0, player2score: 0, player1setsWon: 0, player2setsWon: 0, sets: []});
+    this.setState({
+      player1name: "",
+      player2name: "",
+      player1score: 0,
+      player2score: 0,
+      player1setsWon: 0,
+      player2setsWon: 0,
+      sets: []
+    });
   }
 
   addSet() {
@@ -91,47 +113,83 @@ class Addgames extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-xs-4">
+          <div className="col-xs-4" style={gamesStyle}>
             <form>
               <div className="form-group">
                 <p style={textStyle}>Add Games</p>
-                <select className="form-control" onChange={this.setPlayer1name} 
-                        value={this.state.player1name ? this.state.player1name : ''}>
-                <option disabled selected value>Please select...</option>  
-                {players.map((player, i) => {
-                  return (
-                    <option key={i}>{player.name}</option>
-                  );
-                })}
-                </select>
-                <p style={textStyle}>vs</p>
-                <select className="form-control" onChange={this.setPlayer2name} 
-                        value={this.state.player2name ? this.state.player2name : ''}>
-                <option disabled selected value>Please select...</option>
-                  {players.map((player, i) => {
-                    return (
-                      <option key={i}>{player.name}</option>
-                    );
-                  })}
-                </select>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-xs-1">
+                      <select
+                        style={colorStyle}
+                        onChange={this.setPlayer1name}
+                        value={
+                          this.state.player1name ? this.state.player1name : ""
+                        }
+                      >
+                        <option disabled selected value>
+                          Please select...
+                        </option>
+                        {players.map((player, i) => {
+                          return (
+                            <option key={i}>
+                              {player.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <div className="col-xs-1">
+                      <p style={textStyle}>vs</p>
+                    </div>
+                    <div className="col-xs-1">
+                      <select
+                        style={colorStyle}
+                        onChange={this.setPlayer2name}
+                        value={
+                          this.state.player2name ? this.state.player2name : ""
+                        }
+                      >
+                        <option disabled selected value>
+                          Please select...
+                        </option>
+                        {players.map((player, i) => {
+                          return (
+                            <option key={i}>
+                              {player.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                </div>
                 <p style={textStyle}>Score (max. of 5)</p>
-                <div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="player1"
-                    placeholder="Player 1 score"
-                    onChange={this.setPlayer1score}
-                    value={this.state.player1score}
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="player2"
-                    placeholder="Player 2 score"
-                    onChange={this.setPlayer2score}
-                    value={this.state.player2score}
-                  />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-xs-2">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="player1"
+                        placeholder="e.g. 9"
+                        onChange={this.setPlayer1score}
+                        value={this.state.player1score}
+                        style={colorStyle}
+                      />
+                    </div>
+                    <div className="col-xs-2">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="player2"
+                        placeholder="e.g. 9"
+                        onChange={this.setPlayer2score}
+                        value={this.state.player2score}
+                        style={colorStyle}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="form-group">
@@ -141,12 +199,18 @@ class Addgames extends Component {
                   className="btn btn-block btn-default"
                   value="Add Set"
                   onClick={this.addSet}
+                  style={colorStyle}
                 />
               </div>
             </form>
-            <button className="btn btn-block btn-danger" onClick={this.addGame}>
-              Add Game
-            </button>
+            <div className="form-group">
+              <button
+                className="btn btn-block btn-danger"
+                onClick={this.addGame}
+              >
+                Add Game
+              </button>
+            </div>
           </div>
         </div>
       </div>

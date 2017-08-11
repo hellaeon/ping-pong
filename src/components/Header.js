@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 const headerStyle = {
-  "textAlign": "center"
+  "textAlign": "center",
+  "color": "white"
 };
 
 class Header extends Component {
